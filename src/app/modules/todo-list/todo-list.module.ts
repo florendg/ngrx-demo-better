@@ -3,6 +3,14 @@ import { CommonModule } from '@angular/common';
 import { TodoListComponent } from './components/todo-list/todo-list.component';
 import {StoreModule} from "@ngrx/store";
 import {todoListFeature} from "./store/todo-list.reducer";
+import { Route, RouterModule } from '@angular/router'
+
+const routes: Route[] = [
+  {
+    path: '',
+    component: TodoListComponent
+  }
+]
 
 @NgModule({
   declarations: [
@@ -10,7 +18,8 @@ import {todoListFeature} from "./store/todo-list.reducer";
   ],
   imports: [
     CommonModule,
-    StoreModule.forFeature(todoListFeature)
-  ]
+    StoreModule.forFeature(todoListFeature),
+    RouterModule.forChild(routes)
+  ],
 })
 export class TodoListModule { }
