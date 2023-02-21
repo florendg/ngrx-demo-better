@@ -1,40 +1,41 @@
-import { createFeature, createReducer, on } from '@ngrx/store'
-import { addTodoItemAction } from './todo-list.actions'
+import { createFeature, createReducer, on } from '@ngrx/store';
+import { addTodoItemAction } from './todo-list.actions';
 
-export const todoListFeatureKey = 'todo-list'
+export const todoListFeatureKey = 'todo-list';
 
 export enum TodoItemStatus {
+  UNKNOWN = -1,
   NEW,
   IN_PROGRESS,
   CLOSED
 }
 
 export interface TodoItem {
-  description: string;
-  category: string;
-  status: TodoItemStatus
+  description: string
+  category: string
+  status: TodoItemStatus | undefined |null
 }
 
 export interface TodoListState {
-  items: Array<TodoItem>;
+  items: TodoItem[]
 }
 
 export const initialState: TodoListState = {
-  items: [],
-}
+  items: []
+};
 
 const todoListReducer = createReducer(initialState,
-  on(addTodoItemAction, (state, {item}) => ({
+  on(addTodoItemAction, (state, { item }) => ({
     ...state,
     items: [
       ...state.items,
       item
     ]
-  })),
+  }))
 );
 
 export const todoListFeature = createFeature({
-    name: todoListFeatureKey,
-    reducer: todoListReducer,
-  },
-)
+  name: todoListFeatureKey,
+  reducer: todoListReducer
+}
+);

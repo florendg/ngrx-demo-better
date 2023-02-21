@@ -1,1 +1,14 @@
-<p>todo-list works!</p>
+<div class="todo-list_items" *ngIf="todoListItems$ | async as vm">
+  <ng-container *ngFor="let item of vm">
+    <span>{{ item.category }}</span>
+  </ng-container>
+</div>
+<div class="todo-list_new-item">
+  <form [formGroup]="newTodoListItem">
+    <label for="category">Category</label>
+    <input type="text" id="category" formControlName="category">
+    <label for="description">Description</label>
+    <input type="text" id="description" formControlName="description">
+    <button (click)="saveTodoItem()">Save</button>
+  </form>
+</div>

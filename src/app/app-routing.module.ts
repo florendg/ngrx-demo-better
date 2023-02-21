@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, type Routes } from '@angular/router';
 
 const routes: Routes = [{
   path: 'todo',
   pathMatch: 'full',
-  loadChildren: () => import('./modules/todo-list/todo-list.module').then((m => m.TodoListModule))
+  loadChildren: async () => (await import('./modules/todo-list/todo-list.module')).TodoListModule
 }];
 
 @NgModule({
